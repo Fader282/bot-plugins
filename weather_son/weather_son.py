@@ -11,7 +11,6 @@ sv_help = '''
 
 sv = Service('谁是天弃之子', visible = True, enable_on_default = True, help_ = sv_help)
 
-emmm = f"{R.img('无语.png').cqcode}"
 _flmt = FreqLimiter(30)
 
 @sv.on_fullmatch('天弃之子')
@@ -21,12 +20,12 @@ async def weather_son_punish(bot, ev):
     self_info = await bot.get_group_member_info(user_id = sid, group_id = gid)
     role = self_info['role']
     if role == 'member':
-        await bot.send(ev, '冰祈不是管理员啦' + emmm)
+        await bot.send(ev, '我不是管理员啦')
         return
     if not _flmt.check(gid):
         await bot.send(ev, f'唤雷咏唱冷却中...({round(_flmt.left_time(gid))}s)')
         return
-    await bot.send(ev, f'冰祈咏唱中...')
+    await bot.send(ev, f'bot咏唱中...')
     group_info = await bot.get_group_member_list(group_id = gid)
     member_list = [member['user_id'] for member in group_info]
     member_list.remove(sid)
