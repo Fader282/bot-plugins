@@ -1,5 +1,5 @@
 import hoshino 
-from hoshino import Service, priv, R, util
+from hoshino import Service, priv, util
 from hoshino.typing import CQEvent
 import random
 from hoshino.util import FreqLimiter
