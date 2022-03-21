@@ -2,15 +2,12 @@ import requests, json
 from hoshino import Service, R
 from hoshino.typing import CQEvent
 import hoshino
-import sys
-sys.path.append('C:/Users/Administrator/Desktop/hoshino-installer-master/qqbot/HoshinoBot/hoshino/modules/icelogin/config/')
-import money
 
 sv = Service('土味情话生成器', enable_on_default=True, visible=True, help_='''
 说什么晚安，听好了，晚上要说我爱你
 '''.strip())
 
-apikey = '2ca79a2d302de4cabe3d40abe1d9b6cd'
+apikey = '' # 输入自己的天行apikey,请前往https://www.tianapi.com注册
 
 def get_dirt_love(apikey):
 	url = 'http://api.tianapi.com/saylove/index?key=' + apikey
@@ -26,16 +23,11 @@ def get_dirt_love(apikey):
 @sv.on_fullmatch(('来点情话'))
 async def send_dirt_love(bot,ev:CQEvent):
     uid = ev.user_id
-    cost_flag = 0
     try:
         dirt_love = get_dirt_love(apikey)
         name = ev.sender['nickname']
         dirt_love = dirt_love.replace('XXX', name)
-        cost_flag = 1
     except Exception as e: 
         hoshino.logger.error(f'土味情话错误：{e}, 请检查')
         dirt_love = f'该功能好像被玩坏了...'
-        cost_flag = 0
-    if cost_flag:
-        money.reduce_user_money(uid,"gold",2)
     await bot.send(ev, dirt_love, at_sender = True)
