@@ -23,7 +23,7 @@ class UsedFlag:
             self.flag = 0
             return False
 
-emmm = f"{R.img('无语.png').cqcode}"
+emmm = f"{R.img('无语.png').cqcode}"  # 记得在res/img文件夹里放入表情包，自选一张合适的就行
 _time = 30 # 冷却时间(秒)
 used = UsedFlag()
 
